@@ -1,0 +1,70 @@
+{
+  "praga|repubblica ceca": {
+    "lat": 50.0874654,
+    "lon": 14.4212535
+  },
+  "prague|czech republic": {
+    "lat": 50.0874654,
+    "lon": 14.4212535
+  },
+  "rome|italy": {
+    "lat": 41.8933203,
+    "lon": 12.4829321,
+    "display_name": "Roma, Roma Capitale, Lazio, Italia",
+    "updated_at": "2026-01-20T18:03:15.615623"
+  },
+  "ravenna|italy": {
+    "lat": 44.3640607,
+    "lon": 12.0590095,
+    "display_name": "Ravenna, Emilia-Romagna, Italia",
+    "updated_at": "2026-01-20T18:12:58.030855"
+  },
+  "brandys nad labem|czech republic": {
+    "lat": 50.1816237,
+    "lon": 14.6610298,
+    "display_name": "Brandýs nad Labem, Brandýs nad Labem-Stará Boleslav, SO POÚ Brandýs nad Labem-Stará Boleslav, SO ORP Brandýs nad Labem-Stará Boleslav, okres Praha-východ, Středočeský kraj, Střední Čechy, 250 01, Česko",
+    "updated_at": "2026-01-20T18:17:43.630140"
+  },
+  "hanoi|vietnam": {
+    "lat": 21.0283334,
+    "lon": 105.854041,
+    "display_name": "Thành phố Hà Nội, Việt Nam",
+    "updated_at": "2026-01-20T18:19:21.063176"
+  },
+  "hanoi|prague": {
+    "lat": 50.0999,
+    "lon": 14.4327584,
+    "display_name": "Hanoi Phở, 26, Podplukovníka Sochora, Holešovice, Praha 7, Praha, 170 00, Yakari a Malý Blesk",
+    "updated_at": "2026-01-21T09:05:13.607682"
+  },
+  "varese|italy": {
+    "lat": 45.8397203,
+    "lon": 8.7541338,
+    "display_name": "Varese, Lombardia, Italia",
+    "updated_at": "2026-01-22T11:20:45.769819"
+  },
+  "francoforte|germany": {
+    "lat": 50.1106444,
+    "lon": 8.6820917,
+    "display_name": "Frankfurt am Main, Hessen, Deutschland",
+    "updated_at": "2026-01-22T11:25:57.368136"
+  },
+  "new york|united states": {
+    "lat": 40.7127281,
+    "lon": -74.0060152,
+    "display_name": "New York, United States",
+    "updated_at": "2026-01-22T11:31:43.551892"
+  },
+  "venezia|italy": {
+    "lat": 45.4371908,
+    "lon": 12.3345898,
+    "display_name": "Venezia, Veneto, 30121-30176, Italia",
+    "updated_at": "2026-01-22T11:34:40.350681"
+  },
+  "gambettola|italy": {
+    "lat": 44.1169463,
+    "lon": 12.3387643,
+    "display_name": "Gambettola, Unione Rubicone e mare, Forlì-Cesena, Emilia-Romagna, 47035, Italia",
+    "updated_at": "2026-01-22T11:40:39.765220"
+  }
+}

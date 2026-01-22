@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Maker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v=2) }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="loader" class="loader-overlay">
+        <div class="pin-container">
+            <div class="pin"></div>
+            <div class="pulse"></div>
+        </div>
+        <div class="loader-text">GENERATING YOUR MAP... <br> (it may require minutes)</div>
+    </div>
+
+    <div class="map-placeholder">
+        <div class="map-bg"></div>
+        <div class="map-overlay"></div>
+        <div class="map-grain"></div>
+    </div>
+
+    <div class="poster-container">
+
+        <form class="map-form" id="mapForm">
+            <div class="form-group">
+                <label for="city">CITY</label>
+                <input type="text" id="city" name="city" placeholder="PRAGUE" required>
+            </div>
+
+            <div class="form-group">
+                <label for="country">COUNTRY</label>
+                <input type="text" id="country" name="country" placeholder="CZECH REPUBLIC" required>
+            </div>
+
+            <div class="form-group">
+                <label for="style">STYLE</label>
+                <div class="select-wrapper">
+                    <select id="style" name="style">
+                        {% for theme in themes_list %}
+                        <option value="{{ theme.id }}">{{ theme.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="zoom">ZOOM LEVEL</label>
+                <div class="zoom-slider-container">
+                    <input type="range" id="zoom" name="zoom" min="0" max="3" step="1" value="2">
+                    <div class="zoom-labels">
+                        <span>VILLAGE</span>
+                        <span>TOWN</span>
+                        <span>CITY</span>
+                        <span>METROPOLI</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit">GENERATE MAP</button>
+        </form>
+
+        <div id="resultContainer" class="result-container">
+            <img id="resultImage" src="" alt="Generated Map">
+            <div style="margin-top: 1rem;">
+                <a id="downloadLink" href="#" download="map.png"
+                    style="color: #000; text-decoration: none; border-bottom: 1px solid #000; font-weight: 300;">DOWNLOAD
+                    IMAGE</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('mapForm');
+        const loader = document.getElementById('loader');
+        const resultContainer = document.getElementById('resultContainer');
+        const resultImage = document.getElementById('resultImage');
+        const downloadLink = document.getElementById('downloadLink');
+
+        const zoomLevels = ["village", "town", "city", "metropoli"];
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Show loader
+            loader.classList.add('active');
+            resultContainer.classList.remove('active');
+
+            const zoomIdx = document.getElementById('zoom').value;
+            const formData = {
+                city: document.getElementById('city').value,
+                country: document.getElementById('country').value,
+                style: document.getElementById('style').value,
+                zoom: zoomLevels[zoomIdx]
+            };
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    // Update image and show result
+                    resultImage.src = result.image_url;
+                    downloadLink.href = result.image_url;
+
+                    // Small delay for visual smoothness
+                    setTimeout(() => {
+                        loader.classList.remove('active');
+                        resultContainer.classList.add('active');
+
+                        // Scroll to result
+                        resultContainer.scrollIntoView({ behavior: 'smooth' });
+                    }, 500);
+                } else {
+                    loader.classList.remove('active');
+                    alert('Error: ' + result.message);
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                loader.classList.remove('active');
+                alert('Something went wrong. Please try again.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
